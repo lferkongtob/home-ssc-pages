@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes">
+    <title>关于 site — 时时彩 · 一段介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f3ef;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+            line-height: 1.7;
+            color: #2c2b28;
+            padding: 0 1rem 3.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrap {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* 深色头图区 — 简洁、有叙事感 */
+        .hero {
+            background: #1f2a3a;
+            background-image: radial-gradient(ellipse at 30% 20%, #2d3e55 0%, #121a26 100%);
+            color: #eaeef3;
+            padding: 3.2rem 2.2rem 2.8rem;
+            border-radius: 0 0 32px 32px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+            margin-bottom: 2.6rem;
+            text-align: left;
+            position: relative;
+            transition: border-radius 0.2s;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #7b9eb3, transparent);
+            opacity: 0.3;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            max-width: 650px;
+            margin: 0 auto 0.6rem;
+            line-height: 1.6;
+        }
+
+        .hero .intro-line {
+            font-size: 1.8rem;
+            font-weight: 350;
+            margin-bottom: 0.25rem;
+            display: block;
+            color: #dce6ed;
+        }
+
+        .hero .hero-sub {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+            border-left: 3px solid #7eaac2;
+            padding-left: 1rem;
+            color: #c6d5e0;
+        }
+
+        /* 正文浅色区 */
+        .content {
+            background: #ffffff;
+            padding: 2.2rem 2rem 2.5rem;
+            border-radius: 28px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), 0 8px 20px rgba(0, 0, 0, 0.02);
+            margin-bottom: 2.2rem;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin: 0 0 0.8rem 0;
+            color: #1f2a3a;
+            border-bottom: 2px dotted #d5d9de;
+            padding-bottom: 0.45rem;
+        }
+
+        h2 i, h2 em {
+            font-style: normal;
+            background: #ebf0f5;
+            padding: 0 4px;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .feature-list li {
+            background: #f9f8f6;
+            padding: 0.9rem 1.2rem;
+            border-radius: 18px;
+            border-left: 4px solid #95adc0;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 0.98rem;
+        }
+
+        .feature-list li::before {
+            content: '·';
+            font-weight: 700;
+            color: #2b4b62;
+            font-size: 1.4rem;
+            line-height: 1;
+            margin-right: 0.2rem;
+        }
+
+        .feature-list li strong {
+            color: #1f2a3a;
+            font-weight: 500;
+        }
+
+        .scene-card {
+            background: #f3f1ed;
+            padding: 1.2rem 1.5rem;
+            border-radius: 24px;
+            margin: 1.2rem 0 1.8rem;
+            border: 1px solid #e3e0da;
+        }
+
+        .scene-card p {
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .faq-mini {
+            background: transparent;
+            border-top: 1px solid #e7e4de;
+            padding-top: 1rem;
+            margin-top: 1.2rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+            padding: 0.2rem 0;
+        }
+
+        .faq-mini summary {
+            font-weight: 480;
+            cursor: pointer;
+            color: #2f4053;
+            padding: 0.2rem 0;
+            letter-spacing: 0.02em;
+            transition: color 0.15s;
+        }
+
+        .faq-mini summary:hover {
+            color: #8f3d3d;
+        }
+
+        .faq-mini details p {
+            margin: 0.3rem 0 0.5rem 1.2rem;
+            font-size: 0.92rem;
+            color: #44413c;
+        }
+
+        /* 强调色链接 — 自然嵌入 */
+        a {
+            color: #a5433a;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.15s;
+            font-weight: 400;
+        }
+
+        a:hover {
+            color: #6f2d27;
+            border-bottom: 1px solid #a5433a;
+        }
+
+        .soft-end {
+            margin-top: 1.8rem;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            color: #5f5c56;
+            border-top: 1px solid #ece9e3;
+            padding-top: 1.2rem;
+            text-align: left;
+        }
+
+        .soft-end span {
+            background: #f0ede8;
+            padding: 0 0.3rem;
+            font-style: italic;
+        }
+
+        /* 响应式 */
+        @media (max-width: 540px) {
+            body {
+                padding: 0 0.6rem 2.5rem;
+            }
+
+            .hero {
+                padding: 2.2rem 1.2rem 2rem;
+                border-radius: 0 0 24px 24px;
+            }
+
+            .hero .intro-line {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 1.6rem 1.2rem 2rem;
+                border-radius: 20px;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            .feature-list li {
+                padding: 0.7rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        <!-- 深色头图：开场短句 + 承接 -->
+        <div class="hero">
+            <p>
+                <span class="intro-line">有这样一种数字组合。</span>
+                它出现在傍晚的街角、深夜的聊天框，也出现在某个人安静注视的屏幕前。
+            </p>
+            <div class="hero-sub">
+                关于这个站点，不渲染光环，只陈述所见。
+            </div>
+        </div>
+
+        <!-- 浅色正文区 -->
+        <div class="content">
+            <h2>站点 · 来由</h2>
+            <p>
+                三年前，一个简单的想法开始成形：将分散的讨论、经验与观察落在一处，慢慢整理成可翻阅的记录。于是有了这个网站。它不追赶热度，不制造焦虑，只是尽可能清晰地呈现与
+                <a href="https://home-ssc.com">时时彩</a> 相关的碎片与脉络。
+                每一个页面都经过筛选与重述，剔除含混的部分，留下可以追溯的轮廓。
+            </p>
+            <p>
+                很多人第一次接触时，会被各种术语和速成故事包围。这个站点试图做另一件事——把节奏放慢，不强调“秘诀”，而是谈规则、谈概率、谈那些常常被忽略的细节。
+            </p>
+
+            <h2>几个特点</h2>
+            <ul class="feature-list">
+                <li><strong>叙述而非教程</strong> —— 每一篇更像朋友间的对谈，不摆架子，不编口诀。</li>
+                <li><strong>来源可查</strong> —— 引用的数据与历史片段均标注出处，不编造案例。</li>
+                <li><strong>界面克制</strong> —— 没有弹窗广告，没有闪烁横幅，阅读就是全部。</li>
+                <li><strong>缓慢更新</strong> —— 不求日更，但每篇都经过重读与修正。</li>
+            </ul>
+
+            <!-- 场景化卡片 -->
+            <div class="scene-card">
+                <p style="font-weight: 400; color: #3f3b35;">▎一种可能的场景</p>
+                <p>傍晚，窗边光线渐暗。有人打开页面，不是立刻寻找什么，而是先读一段关于玩法的拆解。没有催促，没有倒计时，只有一行行文字和偶尔的注释。这就是站点的日常。</p>
+            </div>
+
+            <h2>FAQ 摘要</h2>
+            <div class="faq-mini">
+                <details>
+                    <summary>这个网站提供预测或计划吗？</summary>
+                    <p>不提供。所有内容只做规则介绍、历史回顾与逻辑分析，不涉及任何形式的推荐或保证。</p>
+                </details>
+                <details>
+                    <summary>信息准确度如何？</summary>
+                    <p>每篇发布前都经过交叉比对，但数据与规则可能有延迟。建议同时参考官方渠道。</p>
+                </details>
+                <details>
+                    <summary>为什么界面这么简单？</summary>
+                    <p>因为注意力很宝贵，不想用多余元素争夺它。只留下文字和必要的导航。</p>
+                </details>
+            </div>
+
+            <!-- 温和结尾 -->
+            <div class="soft-end">
+                <span>⸻</span> 如果你偶然来到这里，不必着急离开。可以随处看看，或者关掉页面去做别的事。网站会一直在。
+            </div>
+        </div>
+
+        <!-- 一个小提示，也是自然的收束 -->
+        <div style="font-size: 0.82rem; color: #68645c; text-align: center; margin-top: 0.6rem; padding: 0 0.8rem; letter-spacing: 0.3px;">
+            阅读本身就是一种选择 — 关于 <a href="https://home-ssc.com" style="border-bottom: 1px dotted #b5aba0; color: #68645c;">时时彩</a> 的记录，缓慢但真实。
+        </div>
+    </div>
+</body>
+</html>
