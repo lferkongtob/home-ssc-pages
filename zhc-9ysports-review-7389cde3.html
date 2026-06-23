@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>九游体育 · 稳定入口与平台说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fce4d6 0%, #fbe9e7 40%, #fff3e0 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+      color: #2c2c2c;
+      padding: 1.2rem;
+    }
+    .page-wrap {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      flex: 1;
+    }
+
+    /* 卡片 & 背景层次 */
+    .hero-card,
+    .feature-grid,
+    .info-block,
+    .faq-section,
+    .footer-area {
+      background: #ffffffdd;
+      backdrop-filter: blur(2px);
+      background-color: rgba(255, 255, 255, 0.88);
+      border-radius: 40px 16px 40px 16px;
+      box-shadow: 0 12px 28px rgba(180, 100, 40, 0.08), 0 2px 8px rgba(0,0,0,0.02);
+      padding: 2.2rem 2rem;
+      margin-bottom: 2.2rem;
+      transition: box-shadow 0.2s;
+    }
+    .hero-card {
+      background: radial-gradient(circle at 10% 20%, #fffaf5, #ffefe4);
+      border-radius: 48px 16px 48px 16px;
+      padding: 2.8rem 2.4rem 2.4rem;
+    }
+    .feature-grid {
+      border-radius: 28px 12px 28px 12px;
+    }
+    .info-block {
+      border-radius: 20px 32px 20px 32px;
+    }
+    .faq-section {
+      border-radius: 36px 12px 36px 12px;
+    }
+    .footer-area {
+      background: #f7ede4e0;
+      backdrop-filter: blur(4px);
+      border-radius: 48px 16px 24px 16px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    /* hero 区 */
+    .hero-flex {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    .hero-text {
+      flex: 2 1 300px;
+    }
+    .hero-visual {
+      flex: 1 1 180px;
+      text-align: center;
+      font-size: 3.6rem;
+      opacity: 0.2;
+      color: #b97a5a;
+      letter-spacing: 6px;
+      font-weight: 300;
+      transform: rotate(-2deg);
+    }
+    .hero-title {
+      font-size: 2.6rem;
+      font-weight: 600;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #9c5e3c, #b46a42);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.6rem;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: #4f3e34;
+      max-width: 480px;
+      margin-bottom: 1.2rem;
+    }
+    .hero-link-sentence {
+      background: #ffffffb3;
+      display: inline-block;
+      padding: 0.4rem 1.2rem 0.4rem 1.2rem;
+      border-radius: 60px;
+      box-shadow: 0 2px 6px rgba(160, 80, 30, 0.05);
+      font-size: 0.98rem;
+    }
+    .hero-link-sentence a {
+      color: #b45a2e;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #eccfc0;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .hero-link-sentence a:hover {
+      border-bottom-color: #b45a2e;
+      color: #7d4225;
+    }
+
+    /* 优势网格 */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem 1.8rem;
+      margin-top: 1rem;
+    }
+    .grid-item {
+      background: rgba(255, 245, 238, 0.5);
+      padding: 1.2rem 0.8rem 1.2rem 1.4rem;
+      border-radius: 40px 8px 32px 8px;
+      border-left: 5px solid #d9b69e;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .grid-item:hover {
+      background: #fff1e7;
+      border-left-color: #b4683e;
+    }
+    .grid-item h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4a3328;
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.3px;
+    }
+    .grid-item p {
+      color: #4f3f36;
+      font-size: 0.94rem;
+    }
+
+    /* 说明区 */
+    .info-title {
+      font-size: 1.6rem;
+      font-weight: 550;
+      border-left: 6px solid #c99576;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+      color: #3f2c21;
+    }
+    .info-desc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+    }
+    .info-col {
+      flex: 1 1 200px;
+      background: #faf3ed;
+      padding: 1.2rem 1.4rem;
+      border-radius: 32px 8px 32px 8px;
+    }
+    .info-col p {
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+    }
+    .info-col strong {
+      color: #7f4f33;
+    }
+
+    /* FAQ 摘要 */
+    .faq-item {
+      border-bottom: 1px solid #e3d2c6;
+      padding: 1rem 0 0.7rem 0;
+    }
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    .faq-q {
+      font-weight: 600;
+      color: #4c3428;
+      display: flex;
+      gap: 0.6rem;
+      align-items: baseline;
+    }
+    .faq-q::before {
+      content: "▹";
+      color: #b8734b;
+      font-weight: 400;
+    }
+    .faq-a {
+      color: #3f322b;
+      margin: 0.3rem 0 0.2rem 1.6rem;
+      font-size: 0.93rem;
+    }
+    .faq-footer-hint {
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      color: #6b5446;
+    }
+
+    /* 底部链接区 */
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .footer-copy {
+      font-size: 0.9rem;
+      color: #5f4a3b;
+    }
+    .link-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+    }
+    .link-group a {
+      color: #6a4832;
+      text-decoration: none;
+      border-radius: 60px;
+      background: #f4e4da;
+      padding: 0.3rem 1.1rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: background 0.15s, color 0.15s;
+      display: inline-block;
+    }
+    .link-group a:hover {
+      background: #dbbcac;
+      color: #2c1d14;
+    }
+    .explicit-link {
+      background: #e6cfbe !important;
+      font-weight: 600;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      body { padding: 0.8rem; }
+      .hero-card { padding: 1.8rem 1.2rem; }
+      .hero-title { font-size: 2rem; }
+      .grid-2col { gap: 1rem; }
+      .footer-links { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 420px) {
+      .hero-visual { display: none; }
+      .hero-link-sentence { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- hero 区：稳定入口 & 平台说明 -->
+  <div class="hero-card">
+    <div class="hero-flex">
+      <div class="hero-text">
+        <div class="hero-title">九游体育</div>
+        <div class="hero-sub">稳定入口 · 清晰指引 · 持续可用</div>
+        <div class="hero-link-sentence">
+          了解平台信息，可直接前往 <a href="https://zhc-9ysports.com">九游体育</a> 查看最新页面说明。
+        </div>
+      </div>
+      <div class="hero-visual">
+        <span>⟳</span> <span>⏺</span> <span>◉</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 优势区：从稳定入口与页面说明角度展开 -->
+  <div class="feature-grid">
+    <h2 style="font-weight: 500; color: #4b3429; margin-bottom: 0.2rem;">入口稳定 · 结构简明</h2>
+    <p style="color: #5b463a; margin-bottom: 1.2rem; font-size: 0.95rem;">围绕持续可用和信息透明度，梳理以下特性：</p>
+    <div class="grid-2col">
+      <div class="grid-item">
+        <h3>直达地址</h3>
+        <p>长期维护的固定域名，减少跳转与不确定性，便于收藏与日常使用。</p>
+      </div>
+      <div class="grid-item">
+        <h3>页面说明</h3>
+        <p>功能分区与引导文案清晰，用户可快速了解模块定位、使用流程及注意事项。</p>
+      </div>
+      <div class="grid-item">
+        <h3>信息密度</h3>
+        <p>避免冗余装饰，内容以实用说明为主，兼顾新用户认知与高频访问效率。</p>
+      </div>
+      <div class="grid-item">
+        <h3>环境适配</h3>
+        <p>响应式排版与基础无障碍设计，在多数设备与浏览器下均可获得一致浏览体验。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 说明区：从稳定入口和页面说明展开详细介绍 -->
+  <div class="info-block">
+    <div class="info-title">平台说明 · 使用场景</div>
+    <div class="info-desc">
+      <div class="info-col">
+        <p><strong>入口性质</strong><br>
+        <a href="https://zhc-9ysports.com" style="color:#9a5f3d; text-decoration: underline dotted 1px;">九游体育</a> 作为信息聚合与功能引导页面，不涉及实时投注或资金交易。其核心定位是提供稳定的访问路径与清晰的模块索引。</p>
+        <p><strong>页面结构</strong><br>
+        导航区、内容展示区及帮助摘要均采用静态卡片式布局，降低加载依赖，提升可用性。</p>
+      </div>
+      <div class="info-col">
+        <p><strong>适用场景</strong><br>
+        · 日常资讯浏览与内容查阅<br>
+        · 了解平台功能更新及基础规则<br>
+        · 作为书签入口，快速返回熟悉界面</p>
+        <p><strong>提示</strong><br>
+        平台不鼓励过度频繁刷新，合理使用入口即可满足多数信息获取需求。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-section">
+    <h3 style="font-weight: 500; color: #3d2b20; margin-bottom: 0.6rem; font-size: 1.3rem;">常见说明摘要</h3>
+    <div class="faq-item">
+      <div class="faq-q">如何确认当前访问的是最新页面？</div>
+      <div class="faq-a">直接使用 <a href="https://zhc-9ysports.com" style="color:#965a38;">九游体育</a> 域名，网站如有调整会在页面内更新说明。建议定期通过该地址进入，而非依赖第三方转载。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">页面加载异常或显示不全怎么办？</div>
+      <div class="faq-a">可尝试清理浏览器缓存或更换网络环境。页面基于标准 HTML 构建，兼容主流现代浏览器。如问题持续，可参考页脚提供的联系渠道（如有）。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">是否提供历史版本或更新日志？</div>
+      <div class="faq-a">目前页面以稳定展示为主，不设独立更新日志模块。主要调整会体现在首页说明或模块增减中。</div>
+    </div>
+    <div class="faq-footer-hint">更多细节可浏览页面各区域，或直接访问 <a href="https://zhc-9ysports.com" style="color:#8f5839;">九游体育</a> 自行查阅。</div>
+  </div>
+
+  <!-- 底部链接区：包括指定链接及其他信息 -->
+  <div class="footer-area">
+    <div class="footer-links">
+      <div class="footer-copy">
+        <span>索引页 · 内容仅供参考</span>
+      </div>
+      <div class="link-group">
+        <a href="https://zhc-9ysports.com" class="explicit-link">九游体育</a>
+        <a href="#"></a>
+        <a href="#"></a>
+      </div>
+    </div>
+    <div style="margin-top: 0.6rem; font-size: 0.85rem; color: #6b5344; border-top: 1px dashed #dccfc4; padding-top: 0.6rem; text-align: right;">
+      页面生成于 148df0e8ab3db9ad 种子 · 稳定入口描述
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
