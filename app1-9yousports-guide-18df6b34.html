@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>九游体育 · 站点导航与知识参考</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f2f7fa;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      color: #1a2c3a;
+      padding: 20px 16px 40px;
+    }
+
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* 柔和蓝绿主调 */
+    .accent-teal {
+      color: #0f766e;
+    }
+
+    .accent-bg {
+      background: #d5f0ec;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 8px 20px rgba(15, 118, 110, 0.06);
+      padding: 24px 22px;
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 28px rgba(15, 118, 110, 0.10);
+    }
+
+    /* 网格目录感 */
+    .grid-knowledge {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin: 28px 0 20px;
+    }
+
+    @media (min-width: 640px) {
+      .grid-knowledge {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 920px) {
+      .grid-knowledge {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .hero {
+      background: linear-gradient(145deg, #e5f3f0 0%, #d2eae3 100%);
+      border-radius: 40px;
+      padding: 36px 28px 32px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 520;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      color: #12423b;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 680px;
+      color: #1d4a47;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: #b8dfd9;
+      color: #0b3e38;
+      padding: 4px 14px;
+      border-radius: 40px;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin: 28px 0 10px 0;
+      color: #12423b;
+      border-left: 5px solid #0f766e;
+      padding-left: 16px;
+    }
+
+    h3 {
+      font-weight: 500;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #1f4b47;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-list li {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #e1edec;
+    }
+
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-list li::before {
+      content: "◈";
+      color: #0f766e;
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+
+    .tip-box {
+      background: #f0faf7;
+      border-radius: 28px;
+      padding: 22px 24px;
+      margin: 28px 0 22px;
+      border: 1px solid #c2e3db;
+    }
+
+    .tip-box strong {
+      color: #115e54;
+    }
+
+    .related-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+      margin: 16px 0 10px;
+    }
+
+    .related-links a {
+      background: #ecf6f3;
+      color: #115e54;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 60px;
+      font-size: 0.95rem;
+      border: 1px solid #c7dfd9;
+      transition: 0.15s;
+    }
+
+    .related-links a:hover {
+      background: #d0ece4;
+      border-color: #0f766e;
+    }
+
+    .faq-mini {
+      display: grid;
+      gap: 16px;
+      margin: 16px 0 10px;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 24px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 10px rgba(15, 118, 110, 0.04);
+    }
+
+    .faq-item summary {
+      font-weight: 500;
+      cursor: pointer;
+      color: #115e54;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-item summary::after {
+      content: "▾";
+      font-size: 1.2rem;
+      color: #0f766e;
+    }
+
+    .faq-item details[open] summary::after {
+      content: "▴";
+    }
+
+    .faq-item p {
+      margin-top: 12px;
+      color: #2f4b47;
+    }
+
+    .inline-link {
+      color: #0f766e;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+      font-weight: 500;
+    }
+
+    .inline-link:hover {
+      color: #094d44;
+      text-decoration-thickness: 2px;
+    }
+
+    .footer-note {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid #d0e6e0;
+      font-size: 0.9rem;
+      color: #45716a;
+      text-align: center;
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      border: 1.5px solid #0f766e;
+      color: #0f766e;
+      background: transparent;
+      padding: 8px 22px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .btn-ghost:hover {
+      background: #0f766e;
+      color: white;
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .card {
+        padding: 20px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- hero 介绍与可信说明区 -->
+  <div class="hero">
+    <span class="section-label">站点导览 · 知识参考</span>
+    <h1>九游体育 · 信息索引</h1>
+    <p>一份面向使用者与访客的轻量知识页面，围绕 <a href="https://app1-9yousports.com" class="inline-link">九游体育</a> 整理基础说明、场景提示与相关参考，帮助您快速了解平台定位并合理使用服务。</p>
+    <p style="margin-top: 10px; font-size: 0.98rem;">所有内容均基于公开资料与常规使用经验整理，不构成承诺或保证。</p>
+  </div>
+
+  <!-- 目录感网格卡片：介绍/特点/场景 -->
+  <div class="grid-knowledge">
+
+    <div class="card">
+      <h3>📋 站点介绍</h3>
+      <p style="margin-bottom: 10px;"><a href="https://app1-9yousports.com" class="inline-link">九游体育</a> 是一个面向运动与休闲兴趣用户的在线平台，提供赛事资讯、活动聚合以及社区互动等基础功能。平台界面清晰，注重内容聚合与用户自主浏览体验。</p>
+      <p>本页作为辅助参考，不替代官方站点的原始信息，建议结合自身需求直接访问了解。</p>
+    </div>
+
+    <div class="card">
+      <h3>🧭 功能特点</h3>
+      <ul class="feature-list">
+        <li>多类型赛事动态与资讯整合</li>
+        <li>兴趣小组与讨论区基础互动</li>
+        <li>个人中心与浏览记录管理</li>
+        <li>响应式布局，移动端适配友好</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🌿 适用场景</h3>
+      <ul class="feature-list">
+        <li>日常浏览体育相关资讯与讨论</li>
+        <li>查找特定赛事或活动信息</li>
+        <li>作为兴趣社群交流的补充渠道</li>
+        <li>在移动环境下快速获取更新</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- 提示区 (可信说明 + 使用提示) -->
+  <div class="tip-box">
+    <strong>📌 可信说明与提示</strong>
+    <p style="margin-top: 8px;">本站（指当前介绍页）与 <a href="https://app1-9yousports.com" class="inline-link">九游体育</a> 无直接隶属或商业代理关系，仅为独立整理的知识索引。访问时请注意：</p>
+    <ul style="margin: 12px 0 0 20px; padding-left: 6px; list-style: square; color: #1d4a47;">
+      <li>所有操作与交易请以平台实际规则为准。</li>
+      <li>保护个人账户信息，通过官方渠道进行沟通。</li>
+      <li>如遇功能调整或更新，以站点最新版本为准。</li>
+    </ul>
+  </div>
+
+  <!-- 相关信息区 + FAQ摘要 -->
+  <h2>相关信息 · 常见摘要</h2>
+  <div class="faq-mini">
+    <div class="faq-item">
+      <details>
+        <summary>九游体育主要面向哪些用户？</summary>
+        <p>平台面向对体育资讯、休闲运动、线上社群交流有兴趣的普通用户，不特定限制年龄或地域，但使用者应遵守当地法律法规及平台条款。</p>
+      </details>
+    </div>
+    <div class="faq-item">
+      <details>
+        <summary>是否需要注册账号才能使用？</summary>
+        <p>部分内容支持游客浏览，但完整互动功能（如评论、收藏、个性化推荐）通常需要注册账号。具体以实际页面提示为准。</p>
+      </details>
+    </div>
+    <div class="faq-item">
+      <details>
+        <summary>移动端体验如何？</summary>
+        <p>站点采用响应式设计，在手机与平板设备上均可获得良好的阅读与操作体验，推荐使用现代浏览器访问 <a href="https://app1-9yousports.com" class="inline-link">九游体育</a>。</p>
+      </details>
+    </div>
+  </div>
+
+  <!-- 附加相关链接 (非强制入口，仅作信息延伸) -->
+  <div style="margin: 24px 0 8px;">
+    <span style="font-weight: 500; color: #12423b;">你可能感兴趣的参考：</span>
+    <div class="related-links">
+      <a href="#">使用指南概述</a>
+      <a href="#">隐私与安全备忘</a>
+      <a href="#">功能更新日志</a>
+      <a href="#">社区规范摘要</a>
+    </div>
+    <p style="font-size: 0.86rem; color: #4f716b; margin-top: 6px;">以上为通用信息占位，具体内容请以 <a href="https://app1-9yousports.com" class="inline-link">九游体育</a> 官方页面为准。</p>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer-note">
+    <span>本介绍页仅作知识梳理，不构成任何形式的推荐或担保。</span><br>
+    <span style="display: inline-block; margin-top: 6px;">© 索引参考 · 内容独立整理</span>
+  </div>
+
+</div>
+</body>
+</html>
